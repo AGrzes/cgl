@@ -81,16 +81,19 @@ Vue.component('cgl',{
   </div>
   `,
   data(){
+    const count = Math.floor(Math.random()*200)+400
+    const cells: Board = {}
+    for(let i=0;i<count;i++){
+      const x =  Math.floor(Math.random()*50)
+      const y =  Math.floor(Math.random()*100)
+      cells[`${x}x${y}`] = true
+    }
     return {
-      cells: {
-        "1x0": true,
-        "1x1": true,
-        "1x2": true
-      }
+      cells
     }
   },
   mounted(){
-    setInterval(()=> this.cells = step(this.cells), 1000)
+    setInterval(()=> this.cells = step(this.cells), 500)
   }
 })
 
